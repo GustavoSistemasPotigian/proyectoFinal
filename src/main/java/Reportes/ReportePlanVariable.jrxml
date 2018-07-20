@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="428da5f5-e814-4993-a44b-68a9c935f39e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="292"/>
+	<parameter name="idPlanVariable" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT   
+     pl.idPlan_descuento AS Plan_Nro,
+     concat(usr.apellido,' ',usr.nombre) AS Comprador,
+     pl.tipo_plan AS Tipo,
+     pl.aplicacion AS Aplicacion,
+     pr.razon_social AS Proveedor,
+     DATE_FORMAT (pl.fechaActual,"%d-%m-%Y") AS Fecha,
+     DATE_FORMAT (pl.fecha_Devengamiento_Desde,"%d-%m-%Y") AS devengamiento_Desde,
+     DATE_FORMAT (pl.fecha_Devengamiento_Hasta,"%d-%m-%Y") AS devengamiento_Hasta,
+     mot.descripcion AS MotivoSNC,
+     IF(mot.tipo=1,'COMPRA','VENTA') AS Sobre,
+     TRUNCATE (pl.accion_comercial, 2) as reconocimiento,
+     pl.proveedor_idproveedor as Nro,
+     pl.obs_proveedor AS obsProveedor,
+     pl.Modo_Impacto as M_Impacto,
+     pl.Modo_Cancelacion as M_Cancelacion,
+     pl.Modo_Canal as Canal
+
+FROM
+     proveedor pr INNER JOIN plan_descuento pl ON pr.idproveedor = pl.Proveedor_idProveedor
+     INNER JOIN motivo_snc mot ON pl.Motivo_SNC_idMotivo_SNC = mot.idMotivo_SNC
+     INNER JOIN usuario usr ON pl.Usuario_idUsuario = usr.idUsuario
+    
+WHERE pl.idPlan_descuento = $P{idPlanVariable}]]>
+	</queryString>
+	<field name="Plan_Nro" class="java.lang.Integer"/>
+	<field name="Comprador" class="java.lang.String"/>
+	<field name="Tipo" class="java.lang.String"/>
+	<field name="Aplicacion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Proveedor" class="java.lang.String"/>
+	<field name="Fecha" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="devengamiento_Desde" class="java.lang.String"/>
+	<field name="devengamiento_Hasta" class="java.lang.String"/>
+	<field name="MotivoSNC" class="java.lang.String"/>
+	<field name="Sobre" class="java.lang.String"/>
+	<field name="reconocimiento" class="java.math.BigDecimal"/>
+	<field name="Nro" class="java.lang.Integer"/>
+	<field name="obsProveedor" class="java.lang.String"/>
+	<field name="M_Impacto" class="java.lang.String"/>
+	<field name="M_Cancelacion" class="java.lang.String"/>
+	<field name="Canal" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="-2" width="254" height="67" uuid="45a07d71-6d2f-4287-9b7c-1f7e57a09a36"/>
+				<imageExpression><![CDATA["C:\\PlanesPotigian\\logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="260" y="12" width="247" height="53" uuid="fb31f968-0fb3-40a5-b644-62b5c2a1296d"/>
+				<textElement>
+					<font fontName="Times New Roman" size="34" isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Plan Variable]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement x="407" y="0" width="100" height="20" uuid="8967b3cb-45a2-467f-a09a-20c408f7e1d8"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="407" y="20" width="100" height="20" uuid="7acb6f76-1cb4-4042-9c55-312b7d302d57"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="24" y="0" width="69" height="20" uuid="56f2822f-b9c7-4344-8205-07d577085d2e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Plan_Nro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="0" width="45" height="20" uuid="74410901-e2a6-4381-92de-1c7331e8ad86"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Tipo]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="12" y="20" width="69" height="20" uuid="291f3fbc-3a75-410e-89a0-555876108bed"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Plan_Nro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="20" width="69" height="20" uuid="ecfda645-c3d6-47a3-ac04-4002be29dae6"/>
+				<textFieldExpression><![CDATA[$F{Tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="254" y="20" width="275" height="20" uuid="5fd3cf5d-869e-4be4-9ae8-069dc97e72d1"/>
+				<textFieldExpression><![CDATA[$F{Proveedor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="254" y="0" width="100" height="20" uuid="fc250299-0ce7-43a5-a1ea-2b6c01edc502"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Proveedor]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="202" y="20" width="59" height="20" uuid="576da81f-f3bb-4fd3-a88d-da5b0680c135"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Nro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="218" y="0" width="36" height="20" uuid="aba15015-5cd8-466d-a062-3c6fd3eddd82"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Nro ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="414" splitType="Stretch">
+			<staticText>
+				<reportElement x="24" y="154" width="100" height="20" uuid="cc62e538-c694-4bb2-a4d5-8f6f869117e5"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[MotivoSNC]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="24" y="174" width="402" height="20" uuid="dc7acc51-b90a-4165-9649-c8bc914cb33f"/>
+				<textFieldExpression><![CDATA[$F{MotivoSNC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12" y="51" width="133" height="20" uuid="f4a3cff5-7bd8-49ab-8b7a-15920101815b"/>
+				<textFieldExpression><![CDATA[$F{Comprador}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="31" width="133" height="20" uuid="26cef516-c398-461e-b789-bfc1ff03689f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Comprador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="31" width="110" height="20" uuid="da3cb153-cca6-4563-a8cc-b49c871f66a4"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de Aplicación]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="354" y="51" width="100" height="20" uuid="5ac7f2e9-0073-46a3-a7bc-bb8a98753917"/>
+				<textFieldExpression><![CDATA[$F{Aplicacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="24" y="125" width="132" height="20" uuid="75a79a72-745d-451c-8eb7-7bc48feec463"/>
+				<textFieldExpression><![CDATA[$F{devengamiento_Desde}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="68" y="85" width="128" height="20" uuid="2953dbb9-71b2-4fc1-80a6-e2544abd739c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Devengamiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="105" width="100" height="20" uuid="5228ccdf-44ad-427f-bd73-de1d4829d73c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desde]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="105" width="100" height="20" uuid="853e9c3a-931f-4b9b-8a10-a1d6e238e98e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hasta]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="125" width="129" height="20" uuid="000b9c6f-fdee-449f-94c2-728d88c19936"/>
+				<textFieldExpression><![CDATA[$F{devengamiento_Hasta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="24" y="227" width="100" height="20" uuid="cd16686b-5eac-40a6-952a-7670c39f4f7b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{reconocimiento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="24" y="207" width="110" height="20" uuid="b1e6e46e-d0d3-47b3-9bc2-06477ee6f0f7"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Reconocimiento %]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="38" y="227" width="18" height="20" uuid="e36eaa2c-aebc-438e-b96c-5e914ab845f5"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="196" y="207" width="110" height="20" uuid="5993e2c1-c989-47af-b0db-01e0114b7760"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Sobre]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="196" y="227" width="100" height="20" uuid="88d82b62-21be-4434-a7ff-c882fcb3cfc2"/>
+				<textFieldExpression><![CDATA[$F{Sobre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="24" y="374" width="293" height="20" uuid="5877c97d-be62-4e8c-8398-ae32be7b9354"/>
+				<textElement>
+					<font fontName="Times New Roman" size="14" isBold="true" isItalic="false" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Observaciones:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="24" y="394" width="479" height="20" uuid="d7b1c4a4-ffcd-4d25-bd84-97d901099983"/>
+				<textFieldExpression><![CDATA[$F{obsProveedor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="24" y="247" width="110" height="20" uuid="aca6cb97-de14-4a01-9fae-705772683e06"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Modo de Impacto]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="24" y="267" width="282" height="20" uuid="b26b7bf6-976e-48c3-bb6e-ecea01133c31"/>
+				<textFieldExpression><![CDATA[$F{M_Impacto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="24" y="287" width="121" height="20" uuid="56479a5e-48db-425d-ad6b-88d883b4f512"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Modo de Cancelación]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="24" y="307" width="282" height="20" uuid="a9b1cbc5-c6a9-4faa-87e5-c475339bd50a"/>
+				<textFieldExpression><![CDATA[$F{M_Cancelacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="24" y="327" width="110" height="20" uuid="03fa9908-f0e1-4136-9a77-818059923dc5"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Canal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="24" y="347" width="282" height="18" uuid="97610a49-c05d-45c4-84ed-f306b4518fd4"/>
+				<textFieldExpression><![CDATA[$F{Canal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="4" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="56" y="0" width="100" height="20" uuid="14789102-0b16-41b3-9036-9900ddc2ce5e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Firma Proveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="346" y="0" width="100" height="20" uuid="73907732-4116-4464-b46c-23e12561f37c"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Firma Compras]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="23" width="100" height="31" uuid="20d1f7b8-3a97-46bd-b408-f8b0d277c427"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10"/>
+				</textElement>
+				<text><![CDATA[ACLARACIÓN:
+DNI:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="346" y="23" width="100" height="31" uuid="283629c1-5446-47d1-a068-740ea482b05e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ACLARACIÓN:
+DNI:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
