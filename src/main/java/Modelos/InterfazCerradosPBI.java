@@ -502,7 +502,7 @@ public class InterfazCerradosPBI extends javax.swing.JFrame {
         String vPlan="";
         String sqlCond="where pr.situacion='ACTIVO' ";
         if(pPlan.equals(null)==false && pPlan.equals("")==false){
-                sqlCond= sqlCond+" and pl.idPlan_descuento="+pPlan;
+                sqlCond= sqlCond+" and pr.idPlan_descuento="+pPlan;
         }
         if(cmbProveedor.getSelectedItem().equals("--SELECCIONAR--")==false){
             String prov;
