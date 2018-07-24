@@ -67,6 +67,7 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
         jmOpGenNotasDebito = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -189,6 +190,14 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem11);
+
+        jMenuItem14.setText("Listado de Cerrados");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem14);
 
         jMenuBar1.add(jMenu2);
 
@@ -405,6 +414,11 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
         ventanaCerradosPBI.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        ConsultaCerrados ventanaCerrados= new ConsultaCerrados(userId);
+        ventanaCerrados.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
     private void onExportAllRequested(java.awt.event.ActionEvent evt) {                                      
         try
         {
@@ -471,6 +485,7 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
