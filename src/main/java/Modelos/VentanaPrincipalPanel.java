@@ -65,6 +65,7 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
         jmOperaciones = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
         jmOpGenNotasDebito = new javax.swing.JMenuItem();
+        jmCierrePorFecha = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
@@ -176,6 +177,14 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
             }
         });
         jMenu8.add(jmOpGenNotasDebito);
+
+        jmCierrePorFecha.setText("Cierre Por Fecha");
+        jmCierrePorFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmCierrePorFechaActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jmCierrePorFecha);
 
         jmOperaciones.add(jMenu8);
 
@@ -419,6 +428,11 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
         ventanaCerrados.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
+    private void jmCierrePorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCierrePorFechaActionPerformed
+         CierrePorFecha ventanaCierre= new CierrePorFecha();
+        ventanaCierre.setVisible(true);
+    }//GEN-LAST:event_jmCierrePorFechaActionPerformed
+
     private void onExportAllRequested(java.awt.event.ActionEvent evt) {                                      
         try
         {
@@ -496,6 +510,7 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemInactivos;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem jmCierrePorFecha;
     private javax.swing.JMenuItem jmOpGenNotasDebito;
     private javax.swing.JMenu jmOperaciones;
     private javax.swing.JLabel lblVersion;
