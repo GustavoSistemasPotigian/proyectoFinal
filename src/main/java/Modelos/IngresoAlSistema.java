@@ -192,6 +192,11 @@ public class IngresoAlSistema extends javax.swing.JFrame {
                     loginData data = new loginData(idUsuario, nombre, apellido, DNI, users, cargo, Permiso_idPermiso);
                     VentanaPrincipalPanel ventanaPpal= new VentanaPrincipalPanel(data);
                     ventanaPpal.setVisible(true);
+                    
+                    //se revisa diariamente si hay algun plan para cerrar-
+                    CierreDiario cDiario = new CierreDiario();
+                    cDiario.setVisible(true);
+                    
                     this.setVisible(false);
                 }else{
                     //MOSTRAR MSG DE ERROR

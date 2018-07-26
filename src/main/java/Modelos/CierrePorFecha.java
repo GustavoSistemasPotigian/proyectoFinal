@@ -147,8 +147,8 @@ public class CierrePorFecha extends javax.swing.JFrame {
                         "where tipo_plan='VARIABLE' and situacion='ACTIVO' " +
                         "and fecha_devengamiento_desde<='"+fechaHoy+"' " +
                         "and fecha_devengamiento_hasta>='"+fechaHoy+"' "+
-                       // "and ((aplicacion='Mensual' and dia_devengamiento="+diaM+") " +
-                     //   "or (aplicacion='Semanal' and dia_devengamiento="+diaS+"))" +
+                        "and ((aplicacion='Mensual' and dia_devengamiento="+diaM+") " +
+                        "or (aplicacion='Semanal' and dia_devengamiento="+diaS+"))" +
                         "group by 1;";
         try {
             Statement st= cn.createStatement();
@@ -183,8 +183,8 @@ public class CierrePorFecha extends javax.swing.JFrame {
                         "where tipo_plan='FIJO' and situacion='ACTIVO' "+
                         "and fecha_devengamiento_desde<='"+fechaHoy+"' " +
                         "and fecha_devengamiento_hasta>='"+fechaHoy+"' "+
-                        //"and ((aplicacion='Mensual' and dia_devengamiento="+diaM+") " +
-                      //  "or (aplicacion='Semanal' and dia_devengamiento="+diaS+"))" +
+                        "and ((aplicacion='Mensual' and dia_devengamiento="+diaM+") " +
+                        "or (aplicacion='Semanal' and dia_devengamiento="+diaS+"))" +
                         "group by 1;";
         System.out.println(query);
         try {
@@ -429,11 +429,13 @@ public class CierrePorFecha extends javax.swing.JFrame {
         //PROCESO EN BACKGROUND
         TaskCierrePlanesFijos taskPF = new TaskCierrePlanesFijos(lblEstado,lblPFijos,pbProgreso);
         //COMENTADA PARA QUE NO SE RECALCULO
+      //  System.out.println("ACA ESTOY PROBANDO");
         taskPF.execute();
         //TaskCierrePlanesVar taskPV = new TaskCierrePlanesVar(lblEstado,lblPFijos,pbProgreso);
         //taskPV.execute();
     }//GEN-LAST:event_btnNuevoArticuloActionPerformed
 
+    ///esto para tomar la fecha seleccionada
     private void dpFCierreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dpFCierreActionPerformed
         // TODO add your handling code here:
         Integer diaSemana,diaMes,cantFijos,cantVariables;
