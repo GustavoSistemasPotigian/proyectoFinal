@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="428da5f5-e814-4993-a44b-68a9c935f39e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="192"/>
+	<parameter name="idCierre" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[7]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select id_cierre,
+		date_format(fecha_cierre,'%Y-%m-%d') as fecha_cierre,
+		concat(usr.apellido,' ',usr.nombre) AS Comprador,
+		p.accion_comercial,
+		aplicacion,
+		prov.razon_social,
+		prov.cuit,
+		c.tipo_plan,
+		m.descripcion, 
+		concat("$", ' ',truncate(c.importe_descuento,2)) as importe_descuento
+		from cierre c, plan_descuento p, motivo_snc m,proveedor prov, usuario usr
+		where c.id_plan_descuento=p.idPlan_Descuento
+		and p.Motivo_SNC_idMotivo_SNC=m.idMotivo_SNC
+		and prov.idproveedor=p.Proveedor_idproveedor
+		and usr.idUsuario=p.Usuario_idUsuario
+		and id_cierre = $P{idCierre}]]>
+	</queryString>
+	<field name="id_cierre" class="java.lang.Integer"/>
+	<field name="Comprador" class="java.lang.String"/>
+	<field name="accion_comercial" class="java.lang.String"/>
+	<field name="aplicacion" class="java.lang.String"/>
+	<field name="razon_social" class="java.lang.String"/>
+	<field name="fecha_cierre" class="java.lang.String"/>
+	<field name="tipo_plan" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="importe_descuento" class="java.lang.String"/>
+	<field name="cuit" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="-2" width="254" height="67" uuid="45a07d71-6d2f-4287-9b7c-1f7e57a09a36"/>
+				<imageExpression><![CDATA["C:\\PlanesPotigian\\Reportes\\logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="260" y="12" width="247" height="53" uuid="fb31f968-0fb3-40a5-b644-62b5c2a1296d"/>
+				<textElement>
+					<font size="28" isBold="true" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Nota de Crédito]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="12" y="0" width="79" height="20" uuid="56f2822f-b9c7-4344-8205-07d577085d2e"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Número NC.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="229" y="0" width="75" height="20" uuid="74410901-e2a6-4381-92de-1c7331e8ad86"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de Plan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="12" y="20" width="69" height="20" uuid="291f3fbc-3a75-410e-89a0-555876108bed"/>
+				<textFieldExpression><![CDATA[$F{id_cierre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="229" y="20" width="100" height="20" uuid="ecfda645-c3d6-47a3-ac04-4002be29dae6"/>
+				<textFieldExpression><![CDATA[$F{tipo_plan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="347" y="0" width="200" height="20" uuid="8967b3cb-45a2-467f-a09a-20c408f7e1d8"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de Emisión]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="347" y="20" width="120" height="20" uuid="7acb6f76-1cb4-4042-9c55-312b7d302d57"/>
+				<textFieldExpression><![CDATA[$F{fecha_cierre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="120" y="0" width="110" height="20" uuid="da3cb153-cca6-4563-a8cc-b49c871f66a4"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Aplicacion]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="21" width="100" height="20" uuid="5ac7f2e9-0073-46a3-a7bc-bb8a98753917"/>
+				<textFieldExpression><![CDATA[$F{aplicacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="284" splitType="Stretch">
+			<staticText>
+				<reportElement x="24" y="165" width="100" height="20" uuid="be2e853b-0d9a-48fd-9183-53fabdd1d80d"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comprador]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="24" y="185" width="100" height="20" uuid="d22ec2d7-35f9-48da-b611-869a7aa94eb9"/>
+				<textFieldExpression><![CDATA[$F{Comprador}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="310" y="31" width="170" height="20" uuid="be2e853b-0d9a-48fd-9183-53fabdd1d80d"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUIT ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="310" y="51" width="180" height="20" uuid="d22ec2d7-35f9-48da-b611-869a7aa94eb9"/>
+				<textFieldExpression><![CDATA[$F{cuit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="29" y="51" width="261" height="20" uuid="f4a3cff5-7bd8-49ab-8b7a-15920101815b"/>
+				<textFieldExpression><![CDATA[$F{razon_social}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="29" y="31" width="261" height="20" uuid="26cef516-c398-461e-b789-bfc1ff03689f"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proveedor Razon Social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="24" y="108" width="120" height="20" uuid="cc62e538-c694-4bb2-a4d5-8f6f869117e5"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Motivo de NC]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="24" y="128" width="305" height="20" uuid="dc7acc51-b90a-4165-9649-c8bc914cb33f"/>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="380" y="108" width="110" height="20" uuid="da3cb153-cca6-4563-a8cc-b49c871f66a4"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Monto NC]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="128" width="100" height="20" uuid="5ac7f2e9-0073-46a3-a7bc-bb8a98753917"/>
+				<textFieldExpression><![CDATA[$F{importe_descuento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="417" y="200" width="110" height="20" uuid="da3cb153-cca6-4563-a8cc-b49c871f66a4"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Monto TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="417" y="220" width="100" height="20" uuid="5ac7f2e9-0073-46a3-a7bc-bb8a98753917"/>
+				<textFieldExpression><![CDATA[$F{importe_descuento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="56" y="17" width="100" height="20" uuid="14789102-0b16-41b3-9036-9900ddc2ce5e"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Firma Proveedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="367" y="17" width="100" height="20" uuid="73907732-4116-4464-b46c-23e12561f37c"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Firma Compras]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
