@@ -500,7 +500,7 @@ public class InterfazCerradosPBI extends javax.swing.JFrame {
         ConexionMySQL mysql= new ConexionMySQL();
         Connection cn= mysql.Conectar();
         String vPlan="";
-        String sqlCond="where pr.situacion='ACTIVO' ";
+        String sqlCond="where (pr.situacion='ACTIVO' or pr.situacion='') ";
         if(pPlan.equals(null)==false && pPlan.equals("")==false){
                 sqlCond= sqlCond+" and pr.idPlan_descuento="+pPlan;
         }

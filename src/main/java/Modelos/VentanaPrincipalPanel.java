@@ -59,6 +59,7 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -141,6 +142,14 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem7);
+
+        jMenuItem15.setText("Plan Variable V.2");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem15);
 
         jMenu1.add(jMenu4);
 
@@ -433,6 +442,11 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
         ventanaCierre.setVisible(true);
     }//GEN-LAST:event_jmCierrePorFechaActionPerformed
 
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        PlanVariableSinDev ventanaPlanVariableSinDev = new PlanVariableSinDev(userId);
+        ventanaPlanVariableSinDev.setVisible(true);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
     private void onExportAllRequested(java.awt.event.ActionEvent evt) {                                      
         try
         {
@@ -500,6 +514,7 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
