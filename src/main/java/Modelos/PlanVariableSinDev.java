@@ -663,7 +663,7 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
 
                     habilitar();//habilita los campos para la carga de datos
                     inhabilitar();
-                    SeleccionArticulosVariables ventanaArticulos= new SeleccionArticulosVariables(idProve);
+                    SeleccionArticulosVariablesArray ventanaArticulos= new SeleccionArticulosVariablesArray(idProve);
                     //ventanaArticulos.setExtendedState(JFrame.MAXIMIZED_BOTH);
                     ventanaArticulos.setVisible(true);
                     resetFormControls();
