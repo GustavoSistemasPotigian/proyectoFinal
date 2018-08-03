@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -27,9 +29,10 @@ public class SeleccionArticulosVariablesArray extends javax.swing.JFrame {
      * Creates new form SeleccionArticulos
      */
     private String IdProv;
+    private List<String> listaArt=new ArrayList<String>();;
     
     DefaultListModel<String> modelolista= new DefaultListModel<>();
-    public SeleccionArticulosVariablesArray(String IdProveedor) {
+    public SeleccionArticulosVariablesArray(String IdProveedor, List<String> listaArticulos) {
         initComponents();
         IdProv=IdProveedor;
         jListArticulos.setModel(modelolista);
@@ -37,6 +40,8 @@ public class SeleccionArticulosVariablesArray extends javax.swing.JFrame {
         txtIdProveedor.setText(IdProveedor);
         jlistaArticulosClase();
         txtIdProveedor.setEnabled(false);
+        listaArt=listaArticulos;
+        
     }
 
     /**
@@ -265,6 +270,7 @@ public class SeleccionArticulosVariablesArray extends javax.swing.JFrame {
     }
     
     private void aceptar() {
+        
         int index= 0;
         String articulo="";
         //conexión a la bdd
@@ -301,15 +307,20 @@ public class SeleccionArticulosVariablesArray extends javax.swing.JFrame {
                 articulo=jListArticulos.getSelectedValuesList().get(i);
                 String cortado[]=articulo.split("-");
                 idArt= cortado[0];
+                
+                listaArt.add(idArt);
+               
 
-                PreparedStatement pst2= cn.prepareStatement(sSQL);
+               /* PreparedStatement pst2= cn.prepareStatement(sSQL);
                 pst2.setString(1, ultimoId);
                 pst2.setString(2, idArt);
-                pst2.executeUpdate();
+                pst2.executeUpdate();*/
 
             }
             JOptionPane.showMessageDialog(null, mensaje);
+            
             modelolista.clear();
+            System.out.println(listaArt);
 
         }
         catch (SQLException ex) {
@@ -374,8 +385,9 @@ public class SeleccionArticulosVariablesArray extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             String IdProveedor;
+            private List<String> listaArti;
             public void run() {
-                new SeleccionArticulosVariablesArray(IdProveedor).setVisible(true);
+                new SeleccionArticulosVariablesArray(IdProveedor,listaArti).setVisible(true);
             }
         });
     }
