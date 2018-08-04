@@ -500,7 +500,7 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
                 txtObsProveedorActionPerformed(evt);
             }
         });
-        jPanel1.add(txtObsProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 660, 20));
+        jPanel1.add(txtObsProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 660, 40));
 
         jlbObsComprador.setText("Obs. Comprador: ");
         jPanel1.add(jlbObsComprador, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, -1));
