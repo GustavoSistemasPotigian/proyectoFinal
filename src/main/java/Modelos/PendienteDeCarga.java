@@ -605,7 +605,7 @@ public class PendienteDeCarga extends javax.swing.JFrame {
     ///BOTONES Y ACCIONES
     btnNuevo.setEnabled(true);
     btnConsulta.setEnabled(true);
-    btnConfirmar.setEnabled(false);
+    btnConfirmar.setEnabled(true);
 
     
     txtIdProveedor.requestFocus();///posiciona el cursor
@@ -716,6 +716,9 @@ public class PendienteDeCarga extends javax.swing.JFrame {
         }
         idProve=txtIdProveedor.getText();
         tipoDePlan="PENDIENTE";
+        String estado="ACTIVO";
+        String situacion="PENDIENTE";
+        
         //System.out.println("FECHA" + fecha);
         fechaActual= fecha;
        // importe=txtImporte.getText();
@@ -742,8 +745,8 @@ public class PendienteDeCarga extends javax.swing.JFrame {
         {
             sSQL="INSERT INTO plan_descuento (Proveedor_idproveedor, tipo_plan,aplicacion,dia_devengamiento,fechaActual,"
                     + " fecha_devengamiento_Desde,fecha_Devengamiento_Hasta, Usuario_idusuario,Motivo_SNC_idMotivo_SNC,"
-                    + "obs_Proveedor, obs_Comprador) "+
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                    + "obs_Proveedor, obs_Comprador,estado,situacion) "+
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
            mensaje="Operación Satisfactoria";
         }
         /*
@@ -778,6 +781,8 @@ public class PendienteDeCarga extends javax.swing.JFrame {
             pst.setString(9, motivoSNC);
             pst.setString(10,obsProveedor);
             pst.setString(11,obsComprador);
+            pst.setString(12,situacion);
+            pst.setString(13,estado);
             int n = pst.executeUpdate();
           //  guardarCuotas(cn);
             if (n>0)

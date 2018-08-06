@@ -67,6 +67,7 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
         jMenu8 = new javax.swing.JMenu();
         jmOpGenNotasDebito = new javax.swing.JMenuItem();
         jmCierrePorFecha = new javax.swing.JMenuItem();
+        jmCierreEspeciales = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
@@ -194,6 +195,14 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
             }
         });
         jMenu8.add(jmCierrePorFecha);
+
+        jmCierreEspeciales.setText("Cierre Especiales");
+        jmCierreEspeciales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmCierreEspecialesActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jmCierreEspeciales);
 
         jmOperaciones.add(jMenu8);
 
@@ -447,6 +456,12 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
         ventanaPlanVariableSinDev.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
+    private void jmCierreEspecialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmCierreEspecialesActionPerformed
+        // TODO add your handling code here:
+        CierreDiarioEspeciales ventanaCierre= new CierreDiarioEspeciales();
+        ventanaCierre.setVisible(true);
+    }//GEN-LAST:event_jmCierreEspecialesActionPerformed
+
     private void onExportAllRequested(java.awt.event.ActionEvent evt) {                                      
         try
         {
@@ -525,6 +540,7 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemInactivos;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem jmCierreEspeciales;
     private javax.swing.JMenuItem jmCierrePorFecha;
     private javax.swing.JMenuItem jmOpGenNotasDebito;
     private javax.swing.JMenu jmOperaciones;

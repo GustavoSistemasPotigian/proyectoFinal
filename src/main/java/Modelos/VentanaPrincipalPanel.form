@@ -99,6 +99,14 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmCierrePorFechaActionPerformed"/>
                   </Events>
                 </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jmCierreEspeciales">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Cierre Especiales"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmCierreEspecialesActionPerformed"/>
+                  </Events>
+                </MenuItem>
               </SubComponents>
             </Menu>
           </SubComponents>
