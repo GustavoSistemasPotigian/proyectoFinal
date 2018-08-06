@@ -135,7 +135,7 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem2);
 
-        jMenuItem7.setText("Plan Pendiente");
+        jMenuItem7.setText("Plan Especial");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
