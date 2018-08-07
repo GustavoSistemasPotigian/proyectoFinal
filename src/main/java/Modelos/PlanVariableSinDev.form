@@ -657,7 +657,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="txtRamos">
+        <Component class="javax.swing.JLabel" name="txtSubRamos">
           <Properties>
             <Property name="text" type="java.lang.String" value="SubRamos:"/>
           </Properties>
@@ -839,7 +839,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jcomRamos1">
+        <Component class="javax.swing.JComboBox" name="jcomSubRamos">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="4">
@@ -851,7 +851,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcomRamos1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcomSubRamosActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -862,7 +862,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="txtRamos1">
+        <Component class="javax.swing.JLabel" name="txtRamos">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ramos:"/>
           </Properties>
