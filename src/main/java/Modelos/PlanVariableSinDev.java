@@ -186,6 +186,8 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
         txtCanal = new javax.swing.JLabel();
         cmbCanal = new javax.swing.JComboBox<>();
         jBaceptar = new javax.swing.JButton();
+        jcomRamos1 = new javax.swing.JComboBox<>();
+        txtRamos1 = new javax.swing.JLabel();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -302,7 +304,7 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
         jPanel1.add(btnSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 620, 160, 40));
 
         jlbAccion.setText("Acción Comercial: ");
-        jPanel1.add(jlbAccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 425, 118, -1));
+        jPanel1.add(jlbAccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 118, -1));
 
         txtAccionComercial.setText("0");
         txtAccionComercial.addActionListener(new java.awt.event.ActionListener() {
@@ -310,7 +312,7 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
                 txtAccionComercialActionPerformed(evt);
             }
         });
-        jPanel1.add(txtAccionComercial, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, 87, -1));
+        jPanel1.add(txtAccionComercial, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, 87, -1));
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -329,7 +331,7 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
         jPanel1.add(dpFechaDesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 140, -1));
 
         lblPorcent.setText("%");
-        jPanel1.add(lblPorcent, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 425, -1, -1));
+        jPanel1.add(lblPorcent, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, -1, -1));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -481,8 +483,8 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 1170, 40));
 
-        txtRamos.setText("Ramos:");
-        jPanel1.add(txtRamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, -1, -1));
+        txtRamos.setText("SubRamos:");
+        jPanel1.add(txtRamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, -1, -1));
 
         jcomRamos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jcomRamos.addActionListener(new java.awt.event.ActionListener() {
@@ -493,18 +495,18 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
         jPanel1.add(jcomRamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 380, -1));
 
         jlbObsProveedor.setText("Obs. Proveedor:");
-        jPanel1.add(jlbObsProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, -1, -1));
+        jPanel1.add(jlbObsProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 500, -1, -1));
 
         txtObsProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtObsProveedorActionPerformed(evt);
             }
         });
-        jPanel1.add(txtObsProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 480, 660, 40));
+        jPanel1.add(txtObsProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 490, 660, 40));
 
         jlbObsComprador.setText("Obs. Comprador: ");
-        jPanel1.add(jlbObsComprador, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, -1, -1));
-        jPanel1.add(txtObsComprador, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 530, 660, 30));
+        jPanel1.add(jlbObsComprador, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, -1, -1));
+        jPanel1.add(txtObsComprador, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 540, 660, 30));
 
         txtModoCancelacion.setText("Modo de Cancelación");
         jPanel1.add(txtModoCancelacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 310, -1, -1));
@@ -546,6 +548,17 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jBaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 620, 140, 40));
+
+        jcomRamos1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcomRamos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcomRamos1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jcomRamos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 380, -1));
+
+        txtRamos1.setText("Ramos:");
+        jPanel1.add(txtRamos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1057,6 +1070,10 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
         confirmarOP();
         
     }//GEN-LAST:event_jBaceptarActionPerformed
+
+    private void jcomRamos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomRamos1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcomRamos1ActionPerformed
     private void resetFormControls(){
         dpFechaDesde.setDate(null);
         dpFechaHasta.setDate(null);
@@ -1216,7 +1233,7 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
        ConexionMySQL mysql= new ConexionMySQL();
         Connection cn= mysql.Conectar();
         ///ingresamos la consulta
-        String sSQL= "SELECT id_ramo,descripcion_ramo FROM ramos order by id_ramo";
+        String sSQL= "SELECT idramo,ramo FROM ramo order by idramo";
         Integer indice=0;
         try 
         {
@@ -1225,8 +1242,8 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
             
             while (rs.next())///recorre cada valor de la consulta y la guarda en las variables.
             {
-                this.jcomRamos.addItem(rs.getString("descripcion_ramo"));
-                ramosIdx[indice]=rs.getInt("id_ramo");
+                this.jcomRamos.addItem(rs.getString("ramo"));
+                ramosIdx[indice]=rs.getInt("idramo");
                 indice+=1;
             }            
                         
@@ -1589,6 +1606,7 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcomMotivo;
     private javax.swing.JComboBox<String> jcomProveedor;
     private javax.swing.JComboBox<String> jcomRamos;
+    private javax.swing.JComboBox<String> jcomRamos1;
     private javax.swing.JComboBox<String> jcomSucursal;
     private javax.swing.JLabel jlbAccion;
     private javax.swing.JLabel jlbAplicacion;
@@ -1621,6 +1639,7 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
     private javax.swing.JTextField txtObsComprador;
     private javax.swing.JTextField txtObsProveedor;
     private javax.swing.JLabel txtRamos;
+    private javax.swing.JLabel txtRamos1;
     private javax.swing.JTextField txtSucursal;
     // End of variables declaration//GEN-END:variables
 }
