@@ -144,7 +144,7 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem7);
 
-        jMenuItem15.setText("Plan Variable V.2");
+        jMenuItem15.setText("Plan Variable x Ramo");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem15ActionPerformed(evt);

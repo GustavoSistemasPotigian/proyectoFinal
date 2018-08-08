@@ -186,8 +186,9 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
         txtCanal = new javax.swing.JLabel();
         cmbCanal = new javax.swing.JComboBox<>();
         jBaceptar = new javax.swing.JButton();
-        jcomSubRamos = new javax.swing.JComboBox<>();
         txtRamos = new javax.swing.JLabel();
+        jCheckBoxSubRamo = new javax.swing.JCheckBox();
+        jComboSubRamo = new javax.swing.JComboBox<>();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -549,16 +550,19 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
         });
         jPanel1.add(jBaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 620, 140, 40));
 
-        jcomSubRamos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcomSubRamos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcomSubRamosActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jcomSubRamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 380, -1));
-
         txtRamos.setText("Ramos:");
         jPanel1.add(txtRamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, -1, -1));
+
+        jCheckBoxSubRamo.setText("Detallar Sub Ramo");
+        jCheckBoxSubRamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxSubRamoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCheckBoxSubRamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 420, -1, -1));
+
+        jComboSubRamo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(jComboSubRamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 380, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1042,10 +1046,11 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
     private void jcomRamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomRamosActionPerformed
         // TODO add your handling code here:
         if(jcomRamos.getSelectedIndex()!=-1){
-            ramosSelected=ramosIdx[jcomRamos.getSelectedIndex()];  
+            ramosSelected=ramosIdx[jcomRamos.getSelectedIndex()]; 
+              jcomClaseSubRamos();
         }
-        jcomSubRamos.setEnabled(true);
-        jcomClaseSubRamos();
+      
+               
     }//GEN-LAST:event_jcomRamosActionPerformed
 
     private void txtIdProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdProveedorActionPerformed
@@ -1073,9 +1078,20 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jBaceptarActionPerformed
 
-    private void jcomSubRamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomSubRamosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcomSubRamosActionPerformed
+    private void jCheckBoxSubRamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxSubRamoActionPerformed
+       
+        if (jCheckBoxSubRamo.isSelected()==true){
+            jComboSubRamo.setEnabled(true);
+            txtSubRamos.setEnabled(true);
+            jcomClaseSubRamos();
+        
+       }else{
+            jComboSubRamo.setEnabled(false);
+            txtSubRamos.setEnabled(false);
+        }
+        
+        
+    }//GEN-LAST:event_jCheckBoxSubRamoActionPerformed
     private void resetFormControls(){
         dpFechaDesde.setDate(null);
         dpFechaHasta.setDate(null);
@@ -1122,7 +1138,10 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
         //GENERO GRUPO DE RADIO BUTTONS
         lblListaPrecios.setEnabled(true);
         txtListaPrecios.setEnabled(true);
-        txtSubRamos.setEnabled(true);
+        
+        jCheckBoxSubRamo.setEnabled(true);
+        txtSubRamos.setEnabled(false);
+        jComboSubRamo.setEnabled(false);
         txtRamos.setEnabled(true);
         jcomRamos.setEnabled(true);
         buttonGroup1.add(jrbMensual);
@@ -1214,6 +1233,7 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
     
         this.jcomProveedor.removeAllItems();
         this.jcomMotivo.removeAllItems();
+        this.jComboSubRamo.removeAllItems();
 
         this.jcomSucursal.removeAllItems();
          
@@ -1222,7 +1242,7 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
         jcomClaseProveedorMenu();
         jcomClaseCompradorMenu();
         jcomClaseRamos();
-        jcomClaseSubRamos();
+     
         jcomClaseMotivoMenu(1);
         loadCmbModoCancelacion();
         loadCmbImpacto();
@@ -1258,12 +1278,14 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
         } 
     }
     
-    private void jcomClaseSubRamos(){
-        jcomSubRamos.removeAllItems();
-       ConexionMySQL mysql= new ConexionMySQL();
+    private String obtenerID(String Ramo){
+            String id="";
+            
+        ConexionMySQL mysql= new ConexionMySQL();
         Connection cn= mysql.Conectar();
         ///ingresamos la consulta
-        String sSQL= "SELECT idSub_ramo,SubRamo FROM subramo order by idSub_ramo";
+        
+        String sSQL= "SELECT idramo FROM ramo r where r.ramo like '%"+Ramo+"%'  order by idramo";
         Integer indice=0;
         try 
         {
@@ -1272,7 +1294,39 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
             
             while (rs.next())///recorre cada valor de la consulta y la guarda en las variables.
             {
-                this.jcomRamos.addItem(rs.getString("SubRamo"));
+                id=rs.getString("idramo");
+                indice+=1;
+            }            
+                        
+        }
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        } 
+        
+            
+            
+            return id;
+    
+    }
+      
+    
+    
+    private void jcomClaseSubRamos(){
+        jComboSubRamo.removeAllItems();
+       ConexionMySQL mysql= new ConexionMySQL();
+        Connection cn= mysql.Conectar();
+        ///ingresamos la consulta
+        String id= obtenerID(jcomRamos.getSelectedItem().toString());
+        String sSQL= "SELECT idSub_ramo,SubRamo FROM subramo s where s.ramo_id_ramo ="+ id +" order by idSub_ramo";
+        Integer indice=0;
+        try 
+        {
+            Statement st= cn.createStatement();
+            ResultSet rs= st.executeQuery(sSQL);
+            
+            while (rs.next())///recorre cada valor de la consulta y la guarda en las variables.
+            {
+                this.jComboSubRamo.addItem(rs.getString("SubRamo"));
                 ramosIdx[indice]=rs.getInt("idSub_ramo");
                 indice+=1;
             }            
@@ -1331,18 +1385,19 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
        dpFechaHasta.setEnabled(false);
        dpFechaHasta.setFormats(new SimpleDateFormat("yyyy-MM-dd"));
        lblListaPrecios.setEnabled(false);
-        txtListaPrecios.setEnabled(false);
-          txtSubRamos.setEnabled(false);
-        txtRamos.setEnabled(false);
-        jcomRamos.setEnabled(false);
-        jcomSubRamos.setEnabled(false);
+       txtListaPrecios.setEnabled(false);
+       txtSubRamos.setEnabled(false);
+       jCheckBoxSubRamo.setEnabled(false);
+       txtRamos.setEnabled(false);
+       jcomRamos.setEnabled(false);
+       jComboSubRamo.setEnabled(false);
        //btnNuevoPlan.setEnabled(false);
        //btnSalir.setEnabled(false);
        btnSeleccion.setEnabled(false);
        rbCompra.setEnabled(false);
        rbVenta.setEnabled(false);
        
-        ///Habilitar los jCOMBOX
+       ///Habilitar los jCOMBOX
        //jcomArticulo.setEnabled(false);
        
        jcomMotivo.setEnabled(false);
@@ -1666,6 +1721,8 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker dpFechaDesde;
     private org.jdesktop.swingx.JXDatePicker dpFechaHasta;
     private javax.swing.JButton jBaceptar;
+    private javax.swing.JCheckBox jCheckBoxSubRamo;
+    private javax.swing.JComboBox<String> jComboSubRamo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -1677,7 +1734,6 @@ public class PlanVariableSinDev extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcomMotivo;
     private javax.swing.JComboBox<String> jcomProveedor;
     private javax.swing.JComboBox<String> jcomRamos;
-    private javax.swing.JComboBox<String> jcomSubRamos;
     private javax.swing.JComboBox<String> jcomSucursal;
     private javax.swing.JLabel jlbAccion;
     private javax.swing.JLabel jlbAplicacion;

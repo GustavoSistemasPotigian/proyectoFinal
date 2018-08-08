@@ -40,7 +40,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem15">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Plan Variable V.2"/>
+                    <Property name="text" type="java.lang.String" value="Plan Variable x Ramo"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem15ActionPerformed"/>

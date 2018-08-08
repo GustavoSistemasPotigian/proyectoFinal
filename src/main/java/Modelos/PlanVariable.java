@@ -12,8 +12,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
@@ -33,6 +35,8 @@ public class PlanVariable extends javax.swing.JFrame {
     private String rubroS="0";
     private Integer ramosSelected=0;
     int[] ramosIdx = new int[100];
+    private List<String> listaArticulos=new ArrayList<String>();;
+    
     public PlanVariable(String userId) {
         this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
         UID=userId;
@@ -181,6 +185,7 @@ public class PlanVariable extends javax.swing.JFrame {
         cmbImpacto = new javax.swing.JComboBox<>();
         txtCanal = new javax.swing.JLabel();
         cmbCanal = new javax.swing.JComboBox<>();
+        jBaceptar = new javax.swing.JButton();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -294,7 +299,7 @@ public class PlanVariable extends javax.swing.JFrame {
                 btnSeleccionActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 640, 230, 40));
+        jPanel1.add(btnSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 640, 230, 40));
 
         jlbAccion.setText("Acción Comercial: ");
         jPanel1.add(jlbAccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 425, 118, -1));
@@ -534,6 +539,14 @@ public class PlanVariable extends javax.swing.JFrame {
         });
         jPanel1.add(cmbCanal, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 450, 260, -1));
 
+        jBaceptar.setText("Confirmar");
+        jBaceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBaceptarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jBaceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 640, 140, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -560,7 +573,204 @@ public class PlanVariable extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAccionComercialActionPerformed
 
     private void btnSeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionActionPerformed
-        if (dpFechaDesde.getDate()==null ||dpFechaHasta.getDate()==null){
+       if (dpFechaDesde.getDate()==null ||dpFechaHasta.getDate()==null){
+            String mensaje="Verificar fechas!!!";
+            JOptionPane.showMessageDialog(null, mensaje);
+        }else{
+            //conexión a la bdd
+            ConexionMySQL mysql= new ConexionMySQL();
+            Connection cn= mysql.Conectar();
+            ///FECHA ACTUAL
+            java.util.Date date = new java.util.Date();
+            java.text.SimpleDateFormat sdf=new java.text.SimpleDateFormat("yyyy-MM-dd");
+            String fecha = sdf.format(date);
+            ///STRING A UTILIZAR
+            String idProve="", tipoDePlan="",fechaActual="", sucursal="0", idComprador="",idRubro="";
+            String motivoSNC="", idArt="0", fechaDesde="", fechaHasta="";
+            String accionComercial="", tipoDeAplicacion="", obsComprador="", obsProveedor="";
+            String listaPre="", mCancelacion="", mImpacto="", mCanal="";
+            if (txtListaPrecios.getText().equals("")){
+                listaPre="TODAS";
+            }else{
+                listaPre=txtListaPrecios.getText();
+            }
+            // cantCopias="0"
+            String sSQL="";
+            String mensaje;
+            String estado="PENDIENTE";
+            String situacion="ACTIVO";
+            ///campos a cargar
+            idProve= txtIdProveedor.getText();
+            tipoDePlan= "VARIABLE";
+            fechaActual= fecha;
+            idComprador= lblCompN.getText();
+            sucursal= txtSucursal.getText();
+            idRubro= ramosSelected.toString();
+            motivoSNC= motivo_sncS;
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+            fechaDesde= sdf1.format(dpFechaDesde.getDate()).toString();
+            fechaHasta= sdf1.format(dpFechaHasta.getDate()).toString();
+            accionComercial=txtAccionComercial.getText();
+            obsProveedor= txtObsProveedor.getText();
+            obsComprador=txtObsComprador.getText();
+            mCancelacion=cmbModoCancelacion.getSelectedItem().toString();
+            mImpacto=cmbImpacto.getSelectedItem().toString();
+            mCanal=cmbCanal.getSelectedItem().toString();
+            
+
+            if (this.jrbMensual.isSelected()==true){
+                tipoDeAplicacion="Mensual";
+            }
+            else{
+                if (this.jrbSemanal.isSelected()==true){
+                    tipoDeAplicacion="Semanal";}
+            }
+            idArt=null;
+            //SETEAMOS EL DIA DE DEVENGAMIENTO
+            Integer diaDev = setDiaDevengamiento();
+            /*///creamos la consulta sql
+            if (accion.equals("Insertar"))
+            {
+                sSQL="INSERT INTO plan_descuento (Proveedor_idproveedor, tipo_plan,fechaActual,"
+                + "Usuario_idusuario,Sucursal_idSucursal,Sector_idsector,Motivo_SNC_idMotivo_SNC,"
+                + "fecha_Devengamiento_Desde, fecha_Devengamiento_Hasta, accion_comercial,"
+                + " aplicacion,dia_devengamiento,Articulo_idArticulo,lista_precio,estado,situacion,"
+                + " obs_Proveedor, obs_Comprador, "
+                + " Modo_Cancelacion ,Modo_Impacto, Modo_Canal) "  
+                +"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                
+                mensaje="Operación Satisfactoria";
+            }
+            try
+            {
+                PreparedStatement pst= cn.prepareStatement(sSQL);
+                pst.setString(1, idProve );
+                pst.setString(2, tipoDePlan);
+                pst.setString(3, fechaActual);
+                pst.setString(4, idComprador);
+                pst.setString(5, sucursal);
+                pst.setString(6, idRubro);
+                pst.setString(7, motivoSNC);
+                pst.setString(8, fechaDesde);
+                pst.setString(9, fechaHasta);
+                pst.setString(10,accionComercial);
+                pst.setString(11,tipoDeAplicacion);
+                pst.setString(12,diaDev.toString());
+                pst.setString(13,idArt);
+                pst.setString(14,listaPre);
+                pst.setString(15,estado);
+                pst.setString(16,situacion);
+                pst.setString(17,obsProveedor);
+                pst.setString(18,obsComprador);
+                pst.setString(19,mCancelacion);
+                pst.setString(20,mImpacto);
+                pst.setString(21,mCanal);
+
+                int n = pst.executeUpdate();
+
+                if (n>0)
+                {
+                    mensaje="Operación Satisfactoria";
+
+                    JOptionPane.showMessageDialog(null, mensaje);
+
+                    habilitar();//habilita los campos para la carga de datos
+                    inhabilitar();*/
+                    listaArticulos.clear();
+                    SeleccionArticulosVariablesArray ventanaArticulos= new SeleccionArticulosVariablesArray(idProve,listaArticulos);
+                    //ventanaArticulos.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                    ventanaArticulos.setVisible(true);
+                    //resetFormControls();
+                          
+
+       
+        }
+    }//GEN-LAST:event_btnSeleccionActionPerformed
+    private Integer setDiaDevengamiento(){
+        Integer valorDia=0;
+        if(jrbMensual.isSelected()){
+            //ESTA SELECCIONADO DEVENGAMIENTO MENSUAL
+            valorDia=Integer.valueOf((String)cmbDevMes.getSelectedItem());
+        }else{
+            //ESTA SELECCIONADO DEVENGAMIENTO SEMANAL
+            String valorCmb = cmbDevSem.getSelectedItem().toString();
+            switch(valorCmb){
+                case "Domingo": valorDia=1;
+                                break;
+                case "Lunes": valorDia=2;
+                                break;
+                case "Martes": valorDia=3;
+                                break;
+                case "Miercoles": valorDia=4;
+                                break;
+                case "Jueves": valorDia=5;
+                                break;
+                case "Viernes": valorDia=6;
+                                break;
+                case "Sabado": valorDia=7;
+                                break;
+            }
+        }
+        return valorDia;
+    }
+    
+     private void aceptar() {
+        
+        int index= 0;
+        String articulo="";
+        //conexión a la bdd
+        ConexionMySQL mysql= new ConexionMySQL();
+        Connection cn= mysql.Conectar();
+        //STRING A UTILIZAR
+        String ultimoId="", idArt="";
+        String sSQL="",sSQLid="";
+        String mensaje;
+
+        ////Guardamos consulta para ultimo id.
+        sSQLid="SELECT LAST_INSERT_ID(idPlan_Descuento) AS ProximoIdAInsertar FROM plan_descuento ORDER BY idPlan_Descuento DESC LIMIT 1";
+        ///Guardamos la consulta para insertar el dato
+        sSQL="INSERT INTO plan_articulo (idPlan_Descuento, idArticulo) " +
+        "VALUES (?,?)";
+        mensaje="Operación Satisfactoria";
+
+        ///ARRANCA
+
+        try
+        {
+            PreparedStatement pst= cn.prepareStatement(sSQLid);
+            ResultSet resultado= pst.executeQuery();
+            while (resultado.next()) { //Es mas correcto poner el next en el while, te hace lo mismo que tenias en tu antiguo codigo pero en menos lineas y mas limpio
+                ultimoId = resultado.getString("ProximoIdAInsertar");
+            }
+            System.out.println(ultimoId);
+
+            ///obtenemos longitud de los elementos seleccionados.
+            index=listaArticulos.size();
+            System.out.println(index);
+            for (int i=0; i< index; i++ ){
+
+               idArt= listaArticulos.get(i);
+              
+               PreparedStatement pst2= cn.prepareStatement(sSQL);
+                pst2.setString(1, ultimoId);
+                pst2.setString(2, idArt);
+                pst2.executeUpdate();
+
+            }
+            JOptionPane.showMessageDialog(null, mensaje);
+            
+         
+            System.out.println(listaArticulos);
+
+        }
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+
+        }
+        this.setVisible(false);
+    }
+     private void confirmarOP(){
+         if (dpFechaDesde.getDate()==null ||dpFechaHasta.getDate()==null){
             String mensaje="Verificar fechas!!!";
             JOptionPane.showMessageDialog(null, mensaje);
         }else{
@@ -660,13 +870,18 @@ public class PlanVariable extends javax.swing.JFrame {
                     mensaje="Operación Satisfactoria";
 
                     JOptionPane.showMessageDialog(null, mensaje);
+                    
+                    
 
                     habilitar();//habilita los campos para la carga de datos
                     inhabilitar();
-                    SeleccionArticulosVariables ventanaArticulos= new SeleccionArticulosVariables(idProve);
+                    
+                      aceptar();
+                   // SeleccionArticulosVariablesArray ventanaArticulos= new SeleccionArticulosVariablesArray(idProve,listaArticulos);
                     //ventanaArticulos.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                    ventanaArticulos.setVisible(true);
+                 //   ventanaArticulos.setVisible(true);
                     resetFormControls();
+                  
                 }
 
             }
@@ -675,34 +890,10 @@ public class PlanVariable extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, ex);
             }
         }
-    }//GEN-LAST:event_btnSeleccionActionPerformed
-    private Integer setDiaDevengamiento(){
-        Integer valorDia=0;
-        if(jrbMensual.isSelected()){
-            //ESTA SELECCIONADO DEVENGAMIENTO MENSUAL
-            valorDia=Integer.valueOf((String)cmbDevMes.getSelectedItem());
-        }else{
-            //ESTA SELECCIONADO DEVENGAMIENTO SEMANAL
-            String valorCmb = cmbDevSem.getSelectedItem().toString();
-            switch(valorCmb){
-                case "Domingo": valorDia=1;
-                                break;
-                case "Lunes": valorDia=2;
-                                break;
-                case "Martes": valorDia=3;
-                                break;
-                case "Miercoles": valorDia=4;
-                                break;
-                case "Jueves": valorDia=5;
-                                break;
-                case "Viernes": valorDia=6;
-                                break;
-                case "Sabado": valorDia=7;
-                                break;
-            }
-        }
-        return valorDia;
+       
+        
     }
+    
     private void jrbSemanalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbSemanalActionPerformed
         enableDevItems(2);
     }//GEN-LAST:event_jrbSemanalActionPerformed
@@ -857,6 +1048,11 @@ public class PlanVariable extends javax.swing.JFrame {
     private void cmbCanalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCanalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbCanalActionPerformed
+
+    private void jBaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaceptarActionPerformed
+        confirmarOP();
+
+    }//GEN-LAST:event_jBaceptarActionPerformed
     private void resetFormControls(){
         dpFechaDesde.setDate(null);
         dpFechaHasta.setDate(null);
@@ -1376,6 +1572,7 @@ public class PlanVariable extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbModoCancelacion;
     private org.jdesktop.swingx.JXDatePicker dpFechaDesde;
     private org.jdesktop.swingx.JXDatePicker dpFechaHasta;
+    private javax.swing.JButton jBaceptar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

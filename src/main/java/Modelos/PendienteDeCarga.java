@@ -150,11 +150,12 @@ public class PendienteDeCarga extends javax.swing.JFrame {
         jlbObsProveedor = new javax.swing.JLabel();
         txtObsProveedor = new javax.swing.JTextField();
         jlbObsComprador = new javax.swing.JLabel();
-        txtObsComprador = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         lblCompN = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblCompName = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtObsComprador = new javax.swing.JTextArea();
         btnConfirmar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
@@ -256,6 +257,10 @@ public class PendienteDeCarga extends javax.swing.JFrame {
         lblCompName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblCompName.setText("[COMP_NAME]");
 
+        txtObsComprador.setColumns(20);
+        txtObsComprador.setRows(5);
+        jScrollPane1.setViewportView(txtObsComprador);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -314,7 +319,7 @@ public class PendienteDeCarga extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtObsComprador, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
                             .addComponent(txtObsProveedor))
                         .addGap(25, 25, 25))))
         );
@@ -358,8 +363,9 @@ public class PendienteDeCarga extends javax.swing.JFrame {
                 .addComponent(txtObsProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlbObsComprador)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtObsComprador, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
 
         btnConfirmar.setText("Confirmar");
@@ -396,7 +402,7 @@ public class PendienteDeCarga extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConfirmar)
                     .addComponent(btnCancelar))
@@ -599,6 +605,7 @@ public class PendienteDeCarga extends javax.swing.JFrame {
     txtObsProveedor.setEnabled(true);
     jlbObsProveedor.setEnabled(true);
     txtObsComprador.setEnabled(true);
+    
     jlbObsComprador.setEnabled(true);
     cmbDevMes.setEnabled(true);
     
@@ -860,6 +867,7 @@ public class PendienteDeCarga extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> jcomMotivo;
     private javax.swing.JComboBox<String> jcomProveedor;
     private javax.swing.JLabel jlbMotivoSNC;
@@ -875,7 +883,7 @@ public class PendienteDeCarga extends javax.swing.JFrame {
     private javax.swing.JLabel lblVigencia;
     private javax.swing.JTextField txtIdProveedor;
     private javax.swing.JTextField txtMotivoSNC;
-    private javax.swing.JTextField txtObsComprador;
+    private javax.swing.JTextArea txtObsComprador;
     private javax.swing.JTextField txtObsProveedor;
     // End of variables declaration//GEN-END:variables
 }
