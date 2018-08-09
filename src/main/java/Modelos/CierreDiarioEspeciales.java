@@ -29,6 +29,7 @@ import DateManager.DateProvider;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JFrame;
 
 /**
  *
@@ -315,9 +316,11 @@ public class CierreDiarioEspeciales extends javax.swing.JFrame {
         //EJECUTAR UPDATE
         System.out.println("-----GENERANDO CIERRES-----");
         //PROCESO EN BACKGROUND
-        TaskCierrePlanesFijos taskPF = new TaskCierrePlanesFijos(lblEstado,lblPFijos,pbProgreso);
-        //COMENTADA PARA QUE NO SE RECALCULO
-        taskPF.execute();
+        ConsultaPendientes ventanaConsulta= new ConsultaPendientes();
+        ventanaConsulta.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        ventanaConsulta.setVisible(true);
+
+
         //TaskCierrePlanesVar taskPV = new TaskCierrePlanesVar(lblEstado,lblPFijos,pbProgreso);
         //taskPV.execute();
     }//GEN-LAST:event_btnNuevoArticuloActionPerformed
