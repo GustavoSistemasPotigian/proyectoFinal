@@ -193,7 +193,7 @@ public class CierreDiarioEspeciales extends javax.swing.JFrame {
 
         jLabel1.setText("Planes Especiales:");
 
-        btnNuevoArticulo.setText("Generar");
+        btnNuevoArticulo.setText("Planes a Cargar");
         btnNuevoArticulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoArticuloActionPerformed(evt);
@@ -320,9 +320,6 @@ public class CierreDiarioEspeciales extends javax.swing.JFrame {
         ventanaConsulta.setExtendedState(JFrame.MAXIMIZED_BOTH);
         ventanaConsulta.setVisible(true);
 
-
-        //TaskCierrePlanesVar taskPV = new TaskCierrePlanesVar(lblEstado,lblPFijos,pbProgreso);
-        //taskPV.execute();
     }//GEN-LAST:event_btnNuevoArticuloActionPerformed
     
     void BuscarUsuarioEliminar(String idArticulo)
