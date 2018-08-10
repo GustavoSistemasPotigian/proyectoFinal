@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -35,6 +36,7 @@ public class ConsultaPendientes extends javax.swing.JFrame {
      */
       //** instancia del modelo tabla**//
     DefaultTableModel modelo;
+    private String UID;
     public ConsultaPendientes() {
         initComponents();
         this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
@@ -61,6 +63,8 @@ public class ConsultaPendientes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuMonto = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtBuscarPlan = new javax.swing.JTextField();
@@ -80,6 +84,14 @@ public class ConsultaPendientes extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+
+        jMenuMonto.setText("Cargar Monto");
+        jMenuMonto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuMontoActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuMonto);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,6 +129,7 @@ public class ConsultaPendientes extends javax.swing.JFrame {
                 return false;
             }
         });
+        tblConsultaPlanes.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(tblConsultaPlanes);
 
         btnSalirConsulta.setText("Salir");
@@ -424,6 +437,48 @@ public class ConsultaPendientes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jMenuMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMontoActionPerformed
+        // TODO add your handling code here:
+        //   CambiarEstado
+          
+     int filasel;
+        int idPlanVariable=0;
+        String idString="";
+       // GenerarReportes repVariable= new GenerarReportes();
+        modelo= (DefaultTableModel) tblConsultaPlanes.getModel();
+        try
+        {
+
+            filasel=tblConsultaPlanes.getSelectedRow();
+
+            if (filasel==-1)
+            {
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna fila");
+            }
+            else
+            {
+                //accion="Modificar";
+
+                idString= (String)modelo.getValueAt(filasel, 0);
+                System.out.println(idString);
+
+                //habilitar();
+                idPlanVariable= Integer.valueOf(idString);
+                System.out.println(idPlanVariable);
+               // repVariable.reportePlanVariable(idPlanVariable);
+               
+                CargarMontoEspecial ventanaMonto = new CargarMontoEspecial(idPlanVariable,UID);
+                ventanaMonto.setExtendedState(JFrame.NORMAL);
+                ventanaMonto.setVisible(true);
+            }
+        }
+        catch (HeadlessException | NumberFormatException e)
+        {
+
+        }
+                  
+    }//GEN-LAST:event_jMenuMontoActionPerformed
+
     void CargarTablaPlanes(String valor){
         String sSQL="";
         //CARGO VARIABLES PARA HACER EL QUERY
@@ -586,7 +641,9 @@ public class ConsultaPendientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JMenuItem jMenuMonto;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblConsultaPlanes;
     private javax.swing.JTextField txtBuscarPlan;
