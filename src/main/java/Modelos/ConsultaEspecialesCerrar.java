@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -441,7 +442,7 @@ public class ConsultaEspecialesCerrar extends javax.swing.JFrame {
         // TODO add your handling code here:
         //   CambiarEstado
           
-     int filasel;
+        int filasel;
         int idPlanVariable=0;
         String idString="";
        // GenerarReportes repVariable= new GenerarReportes();
@@ -491,6 +492,10 @@ public class ConsultaEspecialesCerrar extends javax.swing.JFrame {
         pComprador=(String) cmbComprador.getSelectedItem();
         pFechaInicio= dpFInicio.getDate();
         pFechaFin=dpFFin.getDate();
+        //OBTENGO LA FECHA DE HOY
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	Date date = new Date();
+        String fechaHoy=dateFormat.format(date);
        // valor="Javier";
         ///configuramos la tabla.
         String [] titulos= {"Nro de Plan","Tipo","Proveedor","Fecha","MotivoSNC", "Desde","Hasta","Devengamiento","Comprador" };
@@ -558,6 +563,8 @@ public class ConsultaEspecialesCerrar extends javax.swing.JFrame {
              "from plan_descuento as pl "+ 
              "INNER JOIN proveedor as pr ON pr.idproveedor = pl.Proveedor_idProveedor "+
              "INNER JOIN motivo_snc as mot ON mot.idMotivo_SNC= pl.Motivo_SNC_idMotivo_SNC "+
+             "and fechaActual<='"+fechaHoy+"' " +
+             "and fechaActual>='"+fechaHoy+"' "+
              "INNER JOIN usuario as usr ON usr.idUsuario= pl.Usuario_idUsuario "+
              " "+ sqlCond;    
         //System.out.println(sSQL);

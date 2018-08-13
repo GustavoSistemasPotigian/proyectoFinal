@@ -316,7 +316,7 @@ public class CierreDiarioEspeciales extends javax.swing.JFrame {
         //EJECUTAR UPDATE
         System.out.println("-----GENERANDO CIERRES-----");
         //PROCESO EN BACKGROUND
-        ConsultaPendientes ventanaConsulta= new ConsultaPendientes();
+        ConsultaEspecialesCerrar ventanaConsulta= new ConsultaEspecialesCerrar();
         ventanaConsulta.setExtendedState(JFrame.MAXIMIZED_BOTH);
         ventanaConsulta.setVisible(true);
 
