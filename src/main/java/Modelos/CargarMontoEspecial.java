@@ -29,6 +29,7 @@ public class CargarMontoEspecial extends javax.swing.JFrame {
         UID=userId;
         jlNroPlan.setText(String.valueOf(idPlan));
         CargarEstado(String.valueOf(idPlan));
+        CargarIdUser(idPlan);
         jcomClaseCompradorMenu();
        // loadCmbSEstados();
     }
@@ -70,6 +71,41 @@ public class CargarMontoEspecial extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
   }
+    
+    void CargarIdUser(int valor){
+        String sSQL="";
+              
+        ConexionMySQL mysql= new ConexionMySQL();
+        Connection cn= mysql.Conectar();
+        
+       ///ingresamos la consulta
+        sSQL="select pl.Usuario_idUsuario as id" +
+              " from plan_descuento pl \n" +
+              "\n" + "where pl.idPlan_Descuento like "+ valor ; 
+              //"\n" + "where pl.idPlan_Descuento like '%"+ valor +"%' order by pa.idarticulo" ; 
+        
+        System.out.println (sSQL);
+        System.out.println (valor);
+       // id_actualizar=valor;
+      
+              try 
+        {
+            Statement st= cn.createStatement();
+            ResultSet rs= st.executeQuery(sSQL);
+            //ASIGNACION DE LOS CAMPOS A LOS REGISTROS DE LA TABLA
+            while (rs.next())
+            {
+                UID=(rs.getString("id"));
+              }
+          
+        }
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+  }
+    
+    
+    
      private void jcomClaseCompradorMenu()
     {
        ///realizamos la conexion con la bdd.
@@ -194,7 +230,7 @@ public class CargarMontoEspecial extends javax.swing.JFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel7.setText("Comprador:");
+        jLabel7.setText("Titular Bonificación: ");
 
         lblCompN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblCompN.setText("[N]");
@@ -311,18 +347,19 @@ public class CargarMontoEspecial extends javax.swing.JFrame {
         Connection cn= mysql.Conectar();
         String sSQL="";
         //String estado= cmbEstados.getSelectedItem().toString();
+        String importe= jTextMonto.getText();
         String responsable="User Nro. " + UID;
         String mensaje;
         
              sSQL="UPDATE plan_descuento " +
-                 "SET Estado = ? " +
+                 "SET importe = ? " +
                   ", ResponsableEstado = ? "+
                  "WHERE idPlan_Descuento like " + id_actualizar;
             mensaje="Operación Satisfactoría";
          try 
         {
             PreparedStatement pst= cn.prepareStatement(sSQL);
-          //  pst.setString(1, estado);
+            pst.setString(1, importe);
             pst.setString(2, responsable);
           
             

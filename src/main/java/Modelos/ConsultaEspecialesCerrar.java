@@ -465,6 +465,8 @@ public class ConsultaEspecialesCerrar extends javax.swing.JFrame {
 
                 //habilitar();
                 idPlanVariable= Integer.valueOf(idString);
+                
+                
                 System.out.println(idPlanVariable);
                // repVariable.reportePlanVariable(idPlanVariable);
                
