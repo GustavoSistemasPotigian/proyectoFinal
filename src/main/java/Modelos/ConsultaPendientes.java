@@ -367,10 +367,11 @@ public class ConsultaPendientes extends javax.swing.JFrame {
                 idString= (String)modelo.getValueAt(filasel, 0);
                 System.out.println(idString);
 
+               
                 //habilitar();
                 idplanfijo= Integer.valueOf(idString);
                 System.out.println(idplanfijo);
-                repFijo.reportePlanFijo(idplanfijo);
+                repFijo.reportePlanEspecial(idplanfijo);
             }
         }
         catch (HeadlessException | NumberFormatException e)

@@ -63,6 +63,7 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
         jmOperaciones = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
         jmOpGenNotasDebito = new javax.swing.JMenuItem();
@@ -171,6 +172,14 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMenuItem4);
+
+        jMenuItem16.setText("Plan Especial");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem16);
 
         jMenu1.add(jMenu5);
 
@@ -462,6 +471,13 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
         ventanaCierre.setVisible(true);
     }//GEN-LAST:event_jmCierreEspecialesActionPerformed
 
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+        ConsultaPendientes ventanaEspecial= new ConsultaPendientes();
+        ventanaEspecial.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
     private void onExportAllRequested(java.awt.event.ActionEvent evt) {                                      
         try
         {
@@ -530,6 +546,7 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
