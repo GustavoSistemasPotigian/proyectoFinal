@@ -156,6 +156,12 @@ public class PendienteDeCarga extends javax.swing.JFrame {
         lblCompName = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtObsComprador = new javax.swing.JTextArea();
+        txtModoCancelacion = new javax.swing.JLabel();
+        cmbModoCancelacion = new javax.swing.JComboBox<>();
+        txtModoImpacto = new javax.swing.JLabel();
+        cmbImpacto = new javax.swing.JComboBox<>();
+        txtCanal = new javax.swing.JLabel();
+        cmbCanal = new javax.swing.JComboBox<>();
         btnConfirmar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
@@ -261,6 +267,33 @@ public class PendienteDeCarga extends javax.swing.JFrame {
         txtObsComprador.setRows(5);
         jScrollPane1.setViewportView(txtObsComprador);
 
+        txtModoCancelacion.setText("Modo de Cancelación");
+
+        cmbModoCancelacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbModoCancelacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbModoCancelacionActionPerformed(evt);
+            }
+        });
+
+        txtModoImpacto.setText("Modo de Impacto");
+
+        cmbImpacto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbImpacto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbImpactoActionPerformed(evt);
+            }
+        });
+
+        txtCanal.setText("Canal");
+
+        cmbCanal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCanal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCanalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -269,8 +302,13 @@ public class PendienteDeCarga extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jlbObsComprador)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtObsProveedor, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnNuevo)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnConsulta)
@@ -282,9 +320,9 @@ public class PendienteDeCarga extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addGap(15, 15, 15)
                                 .addComponent(lblCompName, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblVigencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblVigencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jlbMotivoSNC)
@@ -294,11 +332,11 @@ public class PendienteDeCarga extends javax.swing.JFrame {
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(txtMotivoSNC, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(12, 12, 12)
-                                                .addComponent(jcomMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jcomMotivo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(txtIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jcomProveedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                                .addComponent(jcomProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -310,18 +348,17 @@ public class PendienteDeCarga extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(dpFFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jlbObsProveedor))
-                                        .addGap(37, 37, 37)
+                                        .addGap(18, 18, 18)
                                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 146, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jlbObsComprador)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1)
-                            .addComponent(txtObsProveedor))
-                        .addGap(25, 25, 25))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtModoCancelacion)
+                                    .addComponent(cmbModoCancelacion, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtModoImpacto)
+                                    .addComponent(cmbImpacto, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCanal)
+                                    .addComponent(cmbCanal, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,36 +373,54 @@ public class PendienteDeCarga extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnNuevo)
                         .addComponent(btnConsulta)))
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlbMotivoSNC)
-                    .addComponent(txtMotivoSNC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcomMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlbProveedor)
-                    .addComponent(txtIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcomProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblVigencia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblFInicio)
-                            .addComponent(dpFInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblFFin)
-                            .addComponent(dpFFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jlbObsProveedor))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jlbMotivoSNC)
+                            .addComponent(txtMotivoSNC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcomMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlbProveedor)
+                            .addComponent(txtIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcomProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblVigencia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblFInicio)
+                                    .addComponent(dpFInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFFin)
+                                    .addComponent(dpFFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jlbObsProveedor)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(txtModoCancelacion)
+                        .addGap(6, 6, 6)
+                        .addComponent(cmbModoCancelacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(txtModoImpacto)
+                        .addGap(6, 6, 6)
+                        .addComponent(cmbImpacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(txtCanal)
+                        .addGap(6, 6, 6)
+                        .addComponent(cmbCanal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(txtObsProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtObsProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlbObsComprador)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         btnConfirmar.setText("Confirmar");
@@ -389,7 +444,7 @@ public class PendienteDeCarga extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addComponent(btnConfirmar)
@@ -402,7 +457,7 @@ public class PendienteDeCarga extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConfirmar)
                     .addComponent(btnCancelar))
@@ -571,6 +626,93 @@ public class PendienteDeCarga extends javax.swing.JFrame {
         }
     } 
        
+       private void loadCmbModoCancelacion(){
+        cmbModoCancelacion.removeAllItems();
+        this.cmbModoCancelacion.addItem("--SELECCIONAR--");
+     
+         String prov;
+            //cadena a separar
+            prov= cmbModoCancelacion.getSelectedItem().toString();
+            //arreglo para guardar las cadenas separadas
+            String[] parts=new String[3];
+         
+        ///ESTO DESCONCATENA EL STRING PROVEEDOR QUE VIENE CONCATENADO CON EL ID_PROV 
+            
+         if (!prov.equals("Item 1")){
+                   int i=0;
+                   parts[0]="NETEADO EN FACTURA";
+                   parts[1]="NOTA DE CREDITO";
+                   parts[2]="MERCADERIA SIN CARGO";
+                   System.out.println(parts.length);
+                   while (i<parts.length)///recorre cada valor de la consulta y la guarda en las variables.
+                {
+                        
+                       String texto=(parts[i]);
+                         this.cmbModoCancelacion.addItem(texto);
+                         i++;
+                    }
+            }          
+     
+    }
+    private void loadCmbImpacto(){
+        cmbImpacto.removeAllItems();
+        this.cmbImpacto.addItem("--SELECCIONAR--");
+     
+         String prov;
+            //cadena a separar
+            prov= cmbImpacto.getSelectedItem().toString();
+            //arreglo para guardar las cadenas separadas
+            String[] parts=new String[3];
+         
+        ///ESTO DESCONCATENA EL STRING PROVEEDOR QUE VIENE CONCATENADO CON EL ID_PROV 
+            
+         if (!prov.equals("Item 1")){
+                   int i=0;
+                   parts[0]="FORMADOR DE PRECIO";
+                   parts[1]="RECUPERO ACCION";
+                   parts[2]="INVERSIÓN SOBRE COMPRA";
+                   System.out.println(parts.length);
+                   while (i<parts.length)///recorre cada valor de la consulta y la guarda en las variables.
+                {
+                        
+                       String texto=(parts[i]);
+                         this.cmbImpacto.addItem(texto);
+                         i++;
+                    }
+            }          
+     
+    }
+    private void loadCmbCanal(){
+        cmbCanal.removeAllItems();
+        this.cmbCanal.addItem("--SELECCIONAR--");
+     
+         String prov;
+            //cadena a separar
+            prov= cmbCanal.getSelectedItem().toString();
+            //arreglo para guardar las cadenas separadas
+            String[] parts=new String[5];
+         
+        ///ESTO DESCONCATENA EL STRING PROVEEDOR QUE VIENE CONCATENADO CON EL ID_PROV 
+            
+         if (!prov.equals("Item 1")){
+                   int i=0;
+                   parts[0]="MAYORISTA";
+                   parts[1]="EESS";
+                   parts[2]="SAN JUSTO";
+                   parts[3]="TODAS LAS SUCURSALES";
+                   parts[4]="TOTAL COMPAÑÍA";
+                   System.out.println(parts.length);
+                   while (i<parts.length)///recorre cada valor de la consulta y la guarda en las variables.
+                {
+                        
+                       String texto=(parts[i]);
+                         this.cmbCanal.addItem(texto);
+                         i++;
+                    }
+            }          
+     
+    }
+       
        
   
   
@@ -606,8 +748,17 @@ public class PendienteDeCarga extends javax.swing.JFrame {
     jlbObsProveedor.setEnabled(true);
     txtObsComprador.setEnabled(true);
     
-    jlbObsComprador.setEnabled(true);
-    cmbDevMes.setEnabled(true);
+   jlbObsComprador.setEnabled(true);
+   cmbDevMes.setEnabled(true);
+   //impacto-canal-cancelacion
+   txtModoImpacto.setEnabled(true);
+   cmbImpacto.setEnabled(true);
+   txtModoCancelacion.setEnabled(true);
+   cmbModoCancelacion.setEnabled(true);
+   txtCanal.setEnabled(true);
+   cmbCanal.setEnabled(true);
+      
+    
     
     ///BOTONES Y ACCIONES
     btnNuevo.setEnabled(true);
@@ -637,7 +788,9 @@ public class PendienteDeCarga extends javax.swing.JFrame {
     
     jcomClaseMotivoMenu();
   
-    
+    loadCmbModoCancelacion();
+    loadCmbImpacto();
+    loadCmbCanal();
     
     }
     ///metodo para cancelar la carga de datos
@@ -651,6 +804,8 @@ public class PendienteDeCarga extends javax.swing.JFrame {
     lblFFin.setEnabled(false);
     dpFInicio.setEnabled(false);
     dpFFin.setEnabled(false);
+    
+    
   
     lblTitDev.setEnabled(false);
     lblTitDevMes.setEnabled(false);
@@ -666,6 +821,14 @@ public class PendienteDeCarga extends javax.swing.JFrame {
     txtObsComprador.setEnabled(false);
     jlbObsComprador.setEnabled(false);
     cmbDevMes.setEnabled(false);
+    
+    //IMPACTO-CANCELACION-CANAL
+    txtModoImpacto.setEnabled(false);
+    cmbImpacto.setEnabled(false);
+    txtModoCancelacion.setEnabled(false);
+    cmbModoCancelacion.setEnabled(false);
+    txtCanal.setEnabled(false);
+    cmbCanal.setEnabled(false);
 
     ///BOTONES
     btnNuevo.setEnabled(true);
@@ -682,6 +845,9 @@ public class PendienteDeCarga extends javax.swing.JFrame {
     txtObsProveedor.setText("");
     txtObsComprador.setText("");
    
+    
+    
+    
     }
     
     
@@ -708,7 +874,8 @@ public class PendienteDeCarga extends javax.swing.JFrame {
         ///STRING A UTILIZAR
         String idProve="", tipoDePlan="",fechaActual="",importe="0", cuotas="0", idComprador="",idSector="";
         String motivoSNC="",descuento="0", descDescripcion="", obsComprador="", obsProveedor="",tipoIVA="0", idArt="0";
-      // cantCopias="0"
+        String mCancelacion="", mImpacto="", mCanal="";
+        // cantCopias="0"
         sSQL="";
         fechaInicio=null;
         fechaFin=null;
@@ -737,6 +904,9 @@ public class PendienteDeCarga extends javax.swing.JFrame {
         motivoSNC= txtMotivoSNC.getText();        
         obsProveedor= txtObsProveedor.getText();
         obsComprador=txtObsComprador.getText();
+        mCancelacion=cmbModoCancelacion.getSelectedItem().toString();
+        mImpacto=cmbImpacto.getSelectedItem().toString();
+        mCanal=cmbCanal.getSelectedItem().toString();
       //  tipoIVA=getIVA();
         ///verifico que no se envie un articulo no elegido
   /*      if (this.jCheckArticulo.isSelected()==true){
@@ -752,8 +922,9 @@ public class PendienteDeCarga extends javax.swing.JFrame {
         {
             sSQL="INSERT INTO plan_descuento (Proveedor_idproveedor, tipo_plan,aplicacion,dia_devengamiento,fechaActual,"
                     + " fecha_devengamiento_Desde,fecha_Devengamiento_Hasta, Usuario_idusuario,Motivo_SNC_idMotivo_SNC,"
-                    + "obs_Proveedor, obs_Comprador,estado,situacion) "+
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    + "obs_Proveedor, obs_Comprador,estado,situacion, "
+                    + " Modo_Cancelacion ,Modo_Impacto, Modo_Canal)"
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
            mensaje="Operación Satisfactoria";
         }
         /*
@@ -790,6 +961,9 @@ public class PendienteDeCarga extends javax.swing.JFrame {
             pst.setString(11,obsComprador);
             pst.setString(12,situacion);
             pst.setString(13,estado);
+            pst.setString(14,mCancelacion);
+            pst.setString(15,mImpacto);
+            pst.setString(16,mCanal);
             int n = pst.executeUpdate();
           //  guardarCuotas(cn);
             if (n>0)
@@ -818,6 +992,18 @@ public class PendienteDeCarga extends javax.swing.JFrame {
         ventanaConsulta.setExtendedState(JFrame.MAXIMIZED_BOTH);
         ventanaConsulta.setVisible(true);
     }//GEN-LAST:event_btnConsultaActionPerformed
+
+    private void cmbModoCancelacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbModoCancelacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbModoCancelacionActionPerformed
+
+    private void cmbImpactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbImpactoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbImpactoActionPerformed
+
+    private void cmbCanalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCanalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbCanalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -860,7 +1046,10 @@ public class PendienteDeCarga extends javax.swing.JFrame {
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnConsulta;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JComboBox<String> cmbCanal;
     private javax.swing.JComboBox<String> cmbDevMes;
+    private javax.swing.JComboBox<String> cmbImpacto;
+    private javax.swing.JComboBox<String> cmbModoCancelacion;
     private org.jdesktop.swingx.JXDatePicker dpFFin;
     private org.jdesktop.swingx.JXDatePicker dpFInicio;
     private javax.swing.JLabel jLabel1;
@@ -881,7 +1070,10 @@ public class PendienteDeCarga extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitDev;
     private javax.swing.JLabel lblTitDevMes;
     private javax.swing.JLabel lblVigencia;
+    private javax.swing.JLabel txtCanal;
     private javax.swing.JTextField txtIdProveedor;
+    private javax.swing.JLabel txtModoCancelacion;
+    private javax.swing.JLabel txtModoImpacto;
     private javax.swing.JTextField txtMotivoSNC;
     private javax.swing.JTextArea txtObsComprador;
     private javax.swing.JTextField txtObsProveedor;

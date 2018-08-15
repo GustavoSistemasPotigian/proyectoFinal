@@ -194,8 +194,11 @@ public class IngresoAlSistema extends javax.swing.JFrame {
                     ventanaPpal.setVisible(true);
                     
                     //se revisa diariamente si hay algun plan para cerrar-
+                    //planes fijos y variables
                     CierreDiario cDiario = new CierreDiario();
                     cDiario.setVisible(true);
+                    CierreDiarioEspeciales cDiarioEspecial = new CierreDiarioEspeciales();
+                    cDiarioEspecial.setVisible(true);
                     
                     this.setVisible(false);
                 }else{
