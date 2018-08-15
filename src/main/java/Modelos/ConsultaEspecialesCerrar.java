@@ -371,7 +371,7 @@ public class ConsultaEspecialesCerrar extends javax.swing.JFrame {
                 //habilitar();
                 idplanfijo= Integer.valueOf(idString);
                 System.out.println(idplanfijo);
-                repFijo.reportePlanFijo(idplanfijo);
+                repFijo.reportePlanEspecial(idplanfijo);
             }
         }
         catch (HeadlessException | NumberFormatException e)
