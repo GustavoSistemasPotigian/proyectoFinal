@@ -512,7 +512,7 @@ public class ConsultaEspecialesCerrar extends javax.swing.JFrame {
         ConexionMySQL mysql= new ConexionMySQL();
         Connection cn= mysql.Conectar();
         String vPlan="";
-        String sqlCond="where pl.tipo_plan='PENDIENTE'";
+        String sqlCond="where (pl.tipo_plan='ESPECIAL' AND pl.estado='PENDIENTE') ";
         if(pPlan.equals(null)==false && pPlan.equals("")==false){
                 sqlCond= sqlCond+" and pl.idPlan_descuento="+pPlan;
         }

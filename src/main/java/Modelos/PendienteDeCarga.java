@@ -889,7 +889,7 @@ public class PendienteDeCarga extends javax.swing.JFrame {
             fechaFin = sdf.format(dpFFin.getDate());
         }
         idProve=txtIdProveedor.getText();
-        tipoDePlan="PENDIENTE";
+        tipoDePlan="ESPECIAL";
         String estado="ACTIVO";
         String situacion="PENDIENTE";
         

@@ -30,6 +30,7 @@ public class CargarMontoEspecial extends javax.swing.JFrame {
         jlNroPlan.setText(String.valueOf(idPlan));
         CargarEstado(String.valueOf(idPlan));
         CargarIdUser(idPlan);
+        cargarTextoObs(idPlan);
         jcomClaseCompradorMenu();
        // loadCmbSEstados();
     }
@@ -179,14 +180,17 @@ public class CargarMontoEspecial extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        lblCompN = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        lblCompName = new javax.swing.JLabel();
         jTextMonto = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAcuerdo = new javax.swing.JTextArea();
+        jLabel7 = new javax.swing.JLabel();
+        lblCompN = new javax.swing.JLabel();
+        lblCompName = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextAcuerdoNuevo = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -231,17 +235,8 @@ public class CargarMontoEspecial extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel7.setText("Titular Bonificación: ");
-
-        lblCompN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lblCompN.setText("[N]");
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("-");
-
-        lblCompName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lblCompName.setText("[COMP_NAME]");
 
         jTextMonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -250,11 +245,29 @@ public class CargarMontoEspecial extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel4.setText("Monto a Cargar");
+        jLabel4.setText("Monto a Cargar $:");
 
         jTextAcuerdo.setColumns(20);
+        jTextAcuerdo.setFont(new java.awt.Font("Monospaced", 1, 13)); // NOI18N
         jTextAcuerdo.setRows(5);
         jScrollPane1.setViewportView(jTextAcuerdo);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setText("Titular Bonificación: ");
+
+        lblCompN.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblCompN.setText("[N]");
+
+        lblCompName.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblCompName.setText("[COMP_NAME]");
+
+        jTextAcuerdoNuevo.setColumns(20);
+        jTextAcuerdoNuevo.setFont(new java.awt.Font("Monospaced", 1, 13)); // NOI18N
+        jTextAcuerdoNuevo.setRows(5);
+        jScrollPane2.setViewportView(jTextAcuerdoNuevo);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setText("Nueva Observación:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -272,23 +285,14 @@ public class CargarMontoEspecial extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(58, 58, 58)
-                        .addComponent(jLabel4)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lblCompN)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(lblCompName, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -296,10 +300,23 @@ public class CargarMontoEspecial extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jlNroPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jlNroPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblCompN)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblCompName, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(23, 23, 23))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30)))
                         .addComponent(jLabel6)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,15 +334,18 @@ public class CargarMontoEspecial extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jlEstado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(73, 73, 73))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -350,7 +370,7 @@ public class CargarMontoEspecial extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -362,23 +382,61 @@ public class CargarMontoEspecial extends javax.swing.JFrame {
         CargarMontoEspecial.this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    
+    private void cargarTextoObs(int valor){
+        ConexionMySQL mysql= new ConexionMySQL();
+        Connection cn2= mysql.Conectar();
+        String sSQLTEXT="";
+        
+        sSQLTEXT="SELECT obs_Comprador FROM plan_descuento WHERE idPlan_Descuento like " + valor;
+        
+        System.out.println(sSQLTEXT);
+        try 
+        {
+            Statement st= cn2.createStatement();
+            ResultSet rs= st.executeQuery(sSQLTEXT);
+            
+            
+            while (rs.next())
+            {
+               jTextAcuerdo.setText(rs.getString("obs_Comprador"));
+               jTextAcuerdo.setEnabled(false);
+               
+              }
+            
+            
+        } 
+        
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        
+        
+        
+    }
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         //CONEXION A LA BDD
         ConexionMySQL mysql= new ConexionMySQL();
         Connection cn= mysql.Conectar();
-        Connection cn2= mysql.Conectar();
         String sSQL="";
-        String sSQLTEXT="";
+        
         //String estado= cmbEstados.getSelectedItem().toString();
         String importe= jTextMonto.getText();
         String responsable="User Nro. " + UID;
+        String estado="CERRADO";
+        String obsNueva="";
+        
+        obsNueva= ""+jTextAcuerdo.getText()+" // "+jTextAcuerdoNuevo.getText();
+       
         String mensaje;
         
-        sSQLTEXT="SELECT obs_Comprador FROM plan_descuento WHERE idPlan_Descuento like " + id_actualizar;
+        
         
              sSQL="UPDATE plan_descuento " +
                  "SET importe = ? " +
                   ", ResponsableEstado = ? "+
+                  ", estado = ? "+
+                  ", obs_Comprador = ? "+
                  "WHERE idPlan_Descuento like " + id_actualizar;
             mensaje="Operación Satisfactoría";
          try 
@@ -386,11 +444,9 @@ public class CargarMontoEspecial extends javax.swing.JFrame {
             PreparedStatement pst= cn.prepareStatement(sSQL);
             pst.setString(1, importe);
             pst.setString(2, responsable);
+            pst.setString(3, estado);
+             pst.setString(4, obsNueva);
             
-            Statement st= cn2.createStatement();
-            ResultSet rs= st.executeQuery(sSQLTEXT);
-            
-            jTextAcuerdo.setText(rs.getString("obs_Comprador"));
             int n = pst.executeUpdate();
             
             
@@ -400,8 +456,7 @@ public class CargarMontoEspecial extends javax.swing.JFrame {
                JOptionPane.showMessageDialog(null, mensaje);
                
                CargarMontoEspecial.this.dispose();
-               
-               
+            
                 
             }
             
@@ -464,12 +519,15 @@ public class CargarMontoEspecial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextAcuerdo;
+    private javax.swing.JTextArea jTextAcuerdoNuevo;
     private javax.swing.JTextField jTextMonto;
     private javax.swing.JLabel jlEstado;
     private javax.swing.JLabel jlNroPlan;

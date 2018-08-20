@@ -107,7 +107,7 @@ public class CierreDiarioEspeciales extends javax.swing.JFrame {
         ConexionMySQL mysql= new ConexionMySQL();
         Connection cn= mysql.Conectar();
         String query="select aplicacion,count(*) as cantidad from plan_descuento " +
-                        "where tipo_plan='PENDIENTE' and situacion='ACTIVO' "+
+                        "where tipo_plan='ESPECIAL' and situacion='ACTIVO' and estado='PENDIENTE' "+
                         "and fecha_devengamiento_desde<='"+fechaHoy+"' " +
                         "and fecha_devengamiento_hasta>='"+fechaHoy+"' "+
                         "and ((aplicacion='Mensual' and dia_devengamiento="+diaM+") " +
