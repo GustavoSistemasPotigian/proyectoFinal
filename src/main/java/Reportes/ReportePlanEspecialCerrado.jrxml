@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="792b3808-0352-47e5-8e8a-c628a071ca4c">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="idPlanEspecial" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -11,6 +11,7 @@
      pl.idPlan_descuento AS Plan_Nro,
      concat(usr.apellido,' ',usr.nombre) AS Comprador,
      pl.tipo_plan AS Tipo,
+     TRUNCATE (pl.importe, 2) AS Importe,
      pl.aplicacion AS Aplicacion,
      pr.razon_social AS Proveedor,
      DATE_FORMAT (pl.fechaActual,"%d-%m-%Y") AS Fecha,
@@ -33,6 +34,9 @@ WHERE pl.idPlan_descuento = $P{idPlanEspecial}]]>
 	<field name="Plan_Nro" class="java.lang.Integer"/>
 	<field name="Comprador" class="java.lang.String"/>
 	<field name="Tipo" class="java.lang.String"/>
+	<field name="Importe" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="Aplicacion" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -144,6 +148,25 @@ WHERE pl.idPlan_descuento = $P{idPlanEspecial}]]>
 				<reportElement x="30" y="152" width="286" height="20" uuid="28ce1edb-fd42-4d8f-b713-dacc126d874c"/>
 				<textFieldExpression><![CDATA[$F{Comprador}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="370" y="100" width="100" height="20" uuid="05e39de3-ddf7-4603-b8b5-22d450f56fb9"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Importe}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="370" y="80" width="100" height="20" uuid="410ec463-3446-478a-9459-737faf871372"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Importe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="99" width="14" height="20" uuid="5663584e-cb0a-4fce-b059-5d55fc2e5e03"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>

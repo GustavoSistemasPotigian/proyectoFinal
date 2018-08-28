@@ -24,7 +24,7 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
     public String user;
     public String userId;
     private InterfaceManager interfaceMgr = new InterfaceManager(this);
-    public static final String Version="2.0.0";
+    public static final String Version="3.0.0";
     public VentanaPrincipalPanel(loginData userData) {
         //System.out.println("EL USUARIO EN LA CLASE MAIN ES: " + userData.getUsers());
         initComponents();
@@ -72,6 +72,7 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -234,6 +235,14 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem14);
+
+        jMenuItem17.setText("Especiales Cerrados");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem17);
 
         jMenuBar1.add(jMenu2);
 
@@ -478,6 +487,13 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        // TODO add your handling code here:
+        ConsultaEspecialesCerrar ventanaEspecial= new ConsultaEspecialesCerrar();
+        ventanaEspecial.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
     private void onExportAllRequested(java.awt.event.ActionEvent evt) {                                      
         try
         {
@@ -547,6 +563,7 @@ public class VentanaPrincipalPanel extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

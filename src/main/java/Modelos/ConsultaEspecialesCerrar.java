@@ -371,7 +371,7 @@ public class ConsultaEspecialesCerrar extends javax.swing.JFrame {
                 //habilitar();
                 idplanfijo= Integer.valueOf(idString);
                 System.out.println(idplanfijo);
-                repFijo.reportePlanEspecial(idplanfijo);
+                repFijo.reportePlanEspecialCerrado(idplanfijo);
             }
         }
         catch (HeadlessException | NumberFormatException e)
@@ -512,7 +512,7 @@ public class ConsultaEspecialesCerrar extends javax.swing.JFrame {
         ConexionMySQL mysql= new ConexionMySQL();
         Connection cn= mysql.Conectar();
         String vPlan="";
-        String sqlCond="where (pl.tipo_plan='ESPECIAL' AND pl.estado='PENDIENTE') ";
+        String sqlCond="where (pl.tipo_plan='ESPECIAL' AND pl.estado='CERRADO') ";
         if(pPlan.equals(null)==false && pPlan.equals("")==false){
                 sqlCond= sqlCond+" and pl.idPlan_descuento="+pPlan;
         }
